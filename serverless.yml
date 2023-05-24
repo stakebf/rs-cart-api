@@ -1,0 +1,22 @@
+service: rs-cart-api
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  profile: sandx
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - httpApi:
+          method: ANY
+          path: /
+      - httpApi:
+          method: ANY
+          path: '/{proxy+}'
